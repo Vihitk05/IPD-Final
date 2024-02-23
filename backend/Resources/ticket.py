@@ -132,8 +132,7 @@ def select_employee(sentiment):
     return selected_employee
 
 def create_ticket(args):
-    # sentiment = get_sentiment_of_query(args)
-    sentiment = 'neutral'
+    sentiment = get_sentiment_of_query(args)
     selected_employee = select_employee(sentiment)
 
     args['assigned_to'] = selected_employee if selected_employee != {} else None
@@ -141,7 +140,7 @@ def create_ticket(args):
     args['assigned_to_id'] = selected_employee['employee_id'] if selected_employee != {} else None
     args['status'] = 'assigned'
     args['sentiment'] = sentiment
-    # args['emotions'] = get_emotion_of_query(args)
+    args['emotions'] = get_emotion_of_query(args)
 
     response = TicketModel.add_single_ticket(args)
     if response["error"]:

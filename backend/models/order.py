@@ -32,7 +32,7 @@ class Order(db.Document):
     def get_orders_by_customer(cls, id):
         try:
             orders = cls.objects(customer=id)
-            print(orders)
+            # print(orders)
 
             return {"error": False, "data": orders}
         except Exception as e:
