@@ -43,6 +43,7 @@ export default function Managerticket() {
       return "High";
     }
   }
+  
 
   const filterTickets = () => {
     if (selectedOption === "today") {

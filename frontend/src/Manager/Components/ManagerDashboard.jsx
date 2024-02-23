@@ -34,6 +34,19 @@ export default function ManagerDashboard() {
       });
   }, []);
 
+  // Function to filter tickets by date
+  const filterTicketsByDate = (ticketData) => {
+    const today = new Date();
+    return ticketData.filter((ticket) => {
+      const ticketDate = new Date(ticket.created_at.$date);
+      return (
+        ticketDate.getDate() === today.getDate() &&
+        ticketDate.getMonth() === today.getMonth() &&
+        ticketDate.getFullYear() === today.getFullYear()
+      );
+    });
+  };
+
   useEffect(() => {
     const apiUrl = "http://127.0.0.1:5000/ticket?customer=323131"; // Replace with your API URL
 
@@ -42,16 +55,8 @@ export default function ManagerDashboard() {
       .then((data) => {
         const ticketData = data.data || [];
         console.log(ticketData);
-        // Filter tickets based on today's date
-        const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
-        const filteredTickets = ticketData.filter((ticket) => {
-          const ticketDate = new Date(ticket.created_at.$date)
-            .toISOString()
-            .split("T")[0];
-          return ticketDate === today;
-        });
+        const filteredTickets = filterTicketsByDate(ticketData);
         setEmployeeTickets(filteredTickets);
-        // console.log(data["data"]);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -145,12 +150,12 @@ export default function ManagerDashboard() {
             <h3 className="text-2xl text-black font-semibold ml-5 mt-10">
               Today's Tickets
             </h3>
-            <div className="tickets mt-10 flex flex-col">
+            <div className="tickets mt-10 flex flex-row">
               {Array.isArray(employeeTickets) && employeeTickets.length > 0 ? (
                 employeeTickets.map((ticket, index) => (
                   <div
                     key={index}
-                    className="card w-96 bg-[#EEEEEE] text-primary-content"
+                    className="card w-96 bg-gray-500 text-primary-content"
                   >
                     <div className="card-body">
                       <div className="flex flex-row items-center justify-between">
@@ -191,7 +196,7 @@ export default function ManagerDashboard() {
                   </div>
                 ))
               ) : (
-                <div className="flex h-[150px] justify-center items-center">
+                <div className="flex h-[150px] ml-[45%] justify-center items-center">
                   <h3 className="text-gray-400 font-bold text-center">
                     No Tickets for Today
                   </h3>
