@@ -2,6 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-  "/ContactCustomerCare": "pages/ContactCustomerCare.js"
+  "/flipkart": "pages/flipkart.js",
+  "/ContactCustomerCare": "pages/ContactCustomerCare.js",
+  "/": "pages/index.js"
 }

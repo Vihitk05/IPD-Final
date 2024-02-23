@@ -1,3 +1,5 @@
+import { useEffect } from "react"
+
 const { useRouter } = require("next/router")
 
 const Navbar = () => {
@@ -12,6 +14,18 @@ const Navbar = () => {
             Router.push(link)
         }
     }
+
+    useEffect(() => {
+        // if the current path is flipkart then don't show the navbar
+        if (pathname == '/flipkart') {
+            document.querySelector('nav').style.display = 'none'
+        }
+        else {
+            document.querySelector('nav').style.display = 'flex'
+        }
+    }
+    , [pathname])
+
 
     return (
         <nav className="flex flex-row min-h-[60px] items-center border-b-[1px] border-[#EAEAEA] px-[25px] box-border">
