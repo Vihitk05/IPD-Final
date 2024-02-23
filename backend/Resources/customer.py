@@ -3,6 +3,7 @@ from flask_restful import Resource, reqparse
 from models.customer import Customer as CustomerModel
 
 class Customer(Resource):
+
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('name', type=str, required=True, help="Name is required")

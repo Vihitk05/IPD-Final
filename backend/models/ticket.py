@@ -8,9 +8,11 @@ class Ticket(db.Document):
     order_id = db.StringField(required=True)
     customer_query = db.StringField(required=True)
     sentiment = db.StringField(required=True)
-    emotions = db.StringField(required=True)
+    emotions = db.StringField()
     status = db.StringField(required=True)
     assigned_to = db.ReferenceField('Employee')
+    assigned_to_name = db.StringField()
+    assigned_to_id = db.StringField()
     messages = db.ListField(db.DictField(), default=[])
     
     meta = {"collection": "tickets"}

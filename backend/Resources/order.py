@@ -48,7 +48,7 @@ class Order(Resource):
             })
         
         if mobile:
-            response = CustomerModel.get(mobile)
+            response = CustomerModel.get_customer_by_mobile(mobile)
             if response["error"]:
                 return response
             

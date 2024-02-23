@@ -21,8 +21,6 @@ export default function CustChatWindow() {
   const [orderStatus, setOrderStatus] = useState("");
   const [orderDetails, setOrderDetails] = useState([]);
   const [orderTotal, setOrderTotal] = useState("");
-  const [selectedUpdateStatus, setSelectedUpdateStatus] =
-    useState(ticketStatus);
   const [customedetails, setCustomerDetails] = useState([]);
   const { tid, cid } = useParams();
   let colors = {
@@ -31,23 +29,27 @@ export default function CustChatWindow() {
     assigned: "red",
     pending: "orange",
   };
+
   const handleInputChange = (e) => {
     setMessage(e.target.value);
   };
 
   useEffect(() => {
+    // console.log(tid, cid);
     const apiUrl = "http://127.0.0.1:5000/customer?mobile=9137357003"; // Replace with your API URL
     fetch(apiUrl)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data["data"][0]);
-        setCustomerDetails(data["data"][0]);
+        console.log(data["data"]);
+        setCustomerDetails(data["data"]);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   }, []);
   useEffect(() => {
+    console.log(customedetails);
+    console.log(tid, cid);
     const apiUrl = "http://127.0.0.1:5000/ticket?ticket=" + tid; // Replace with your API URL
 
     fetch(apiUrl)
@@ -55,6 +57,7 @@ export default function CustChatWindow() {
       .then((data) => {
         setTicketStatus(data["data"]["status"]);
         setMessagesArray(data["data"]["messages"]);
+        // console.log(data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -67,6 +70,7 @@ export default function CustChatWindow() {
     fetch(apiUrl)
       .then((response) => response.json())
       .then((data) => {
+        // console.log(data["data"]);
         setOrderDetails(data["data"]["products"]);
         setOrderStatus(data["data"]["status"]);
         setOrderTotal(data["data"]["total"]);
@@ -132,9 +136,6 @@ export default function CustChatWindow() {
     socket.emit("send_message", newMessage);
   };
 
-  const selectedStatus = (e) => {
-    setSelectedUpdateStatus(e.target.value);
-  };
   return (
     <div className="flex flex-row justify-around my-4 ">
       <div className=" bg-[#EEEEEE] h-screen w-[69%] rounded">
@@ -142,7 +143,7 @@ export default function CustChatWindow() {
           <div className="absolute inset-x-0 rounded-t-lg flex flex-row top-0 h-[100%] bg-[#086CC4]">
             <div id="cust_info" className="w-[85%]">
               <h4 className="text-xl font-bold text-white my-4 mx-4">
-                {customedetails["name"]}
+                {customedetails.name}
               </h4>
             </div>
             <div
@@ -217,10 +218,10 @@ export default function CustChatWindow() {
           </div>
         </div>
       </div>
-      <div className="">
+      <div className="w-[28%]">
         <div className="bg-[#eeeeee] py-4 rounded-lg">
           <h1 className="text-2xl font-bold text-black pb-1 text-center">
-            Ticket Informationn
+            Ticket Information
           </h1>
           <hr className="p-[1px] bg-black" />
           <div className="p-4">

@@ -5,6 +5,7 @@ class Customer(db.Document):
     email = db.StringField(required=True)
     mobile = db.StringField(required=True)
     address = db.StringField(required=True)
+    customer_id = db.StringField(required=True)
 
     meta = {"collection": "customers"}
 
@@ -20,8 +21,12 @@ class Customer(db.Document):
     @classmethod
     def get_customer_by_mobile(cls, mobile):
         try:
-            customer = cls.objects(mobile=mobile)
+            customer = cls.objects.get(mobile=mobile)
             return {"error": False, "data": customer}
+        
+        except cls.DoesNotExist:
+            return {"error": True, "message": "Customer does not exist"}
+
         except Exception as e:
             print(str(e))
             return {"error": True, "message": str(e)}

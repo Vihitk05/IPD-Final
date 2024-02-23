@@ -62,6 +62,18 @@ class Ticket(Resource):
 
             return get_tickets_by_employee(args)
         
+        response = TicketModel.get_all_tickets()
+        if response["error"]:
+            return response
+        
+        tickets = response["data"]
+
+        return jsonify({
+            "error": False,
+            "data": tickets
+        })
+
+        
 def get_sentiment_of_query(args):
     inferenceAPI = os.getenv('SENTIMENT_ANALYSIS_MODEL_INFERENCE_API')
     token = os.getenv('HUGGING_FACE_ACCESS_TOKEN')
@@ -120,13 +132,16 @@ def select_employee(sentiment):
     return selected_employee
 
 def create_ticket(args):
-    sentiment = get_sentiment_of_query(args)
+    # sentiment = get_sentiment_of_query(args)
+    sentiment = 'neutral'
     selected_employee = select_employee(sentiment)
 
     args['assigned_to'] = selected_employee if selected_employee != {} else None
+    args['assigned_to_name'] = selected_employee['name'] if selected_employee != {} else None
+    args['assigned_to_id'] = selected_employee['employee_id'] if selected_employee != {} else None
     args['status'] = 'assigned'
     args['sentiment'] = sentiment
-    args['emotions'] = get_emotion_of_query(args)
+    # args['emotions'] = get_emotion_of_query(args)
 
     response = TicketModel.add_single_ticket(args)
     if response["error"]:

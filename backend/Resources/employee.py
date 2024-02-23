@@ -30,6 +30,18 @@ class Employee(Resource):
         args = {}
         args["employee_id"] = request.args.get('employee_id')
 
+        if not args["employee_id"]:
+            response = EmployeeModel.get_all_employees()
+            if response["error"]:
+                return response
+
+            employees = response["data"]
+            
+            return jsonify({
+                "error": False,
+                "data": employees
+            })
+
         response =  EmployeeModel.get_single_employee(args)
         if response["error"]:
             return response

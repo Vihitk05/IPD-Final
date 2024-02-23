@@ -23,8 +23,7 @@ export default function EmpChatWindow() {
   const [orderDetails, setOrderDetails] = useState([]);
   const [orderTotal, setOrderTotal] = useState("");
   const [updateButton, setUpdateButton] = useState(false);
-  const [selectedUpdateStatus, setSelectedUpdateStatus] =
-    useState(ticketStatus);
+  const [selectedUpdateStatus, setSelectedUpdateStatus] = useState(ticketStatus);
   const [customedetails, setCustomerDetails] = useState([]);
   const { tid, cid } = useParams();
   let colors = {
@@ -33,24 +32,26 @@ export default function EmpChatWindow() {
     assigned: "red",
     pending: "orange",
   };
+
   const options = ["assigned", "pending", "resolved"];
   const handleInputChange = (e) => {
     setMessage(e.target.value);
   };
 
   useEffect(() => {
-    const apiUrl = "http://127.0.0.1:5000/customer?mobile=9137357003"; // Replace with your API URL
-    fetch(apiUrl)
+    const apiUrl1 = "http://127.0.0.1:5000/customer?mobile=9137357003"; // Replace with your API URL
+    fetch(apiUrl1)
       .then((response) => response.json())
       .then((data) => {
         console.log(data["data"][0]);
-        setCustomerDetails(data["data"][0]);
+        setCustomerDetails(data["data"]);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   }, []);
   useEffect(() => {
+    console.log(tid, cid);
     const apiUrl = "http://127.0.0.1:5000/ticket?ticket=" + tid; // Replace with your API URL
     fetch(apiUrl)
       .then((response) => response.json())
@@ -89,7 +90,11 @@ export default function EmpChatWindow() {
 
   useEffect(() => {
     const handleSocketMessage = (message) => {
-      const newMessage = { message, sender: "customer",created_at:getCurrentTime()};
+      const newMessage = {
+        message,
+        sender: "customer",
+        created_at: getCurrentTime(),
+      };
       setMessagesArray([...messagesArray, newMessage]);
     };
 
@@ -120,7 +125,11 @@ export default function EmpChatWindow() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newMessage = { message: c_message, sender: "agent",created_at:getCurrentTime() };
+    const newMessage = {
+      message: c_message,
+      sender: "agent",
+      created_at: getCurrentTime(),
+    };
     setMessagesArray([...messagesArray, newMessage]);
     setMessage(""); // Clear the input field
     const apiUrl = "http://127.0.0.1:5000/conversation";

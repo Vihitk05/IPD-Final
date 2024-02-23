@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BiSolidMessage } from "react-icons/bi";
 // import { MdNotificationImportant } from "react-icons/md";
 import { Bars } from "react-loader-spinner";
@@ -32,11 +32,11 @@ export default function EmployeeDash() {
   let greeting;
 
   if (currentHour >= 5 && currentHour < 12) {
-    greeting = "Good morning!";
+    greeting = "Good morning";
   } else if (currentHour >= 12 && currentHour < 17) {
-    greeting = "Good afternoon!";
+    greeting = "Good afternoon";
   } else {
-    greeting = "Good evening!";
+    greeting = "Good evening";
   }
 
   const [selectedInterval, setSelectedInterval] = useState("daily");
@@ -48,19 +48,19 @@ export default function EmployeeDash() {
   const [employeeTickets, setEmployeeTickets] = useState([]);
   // const [getCustomerId,setCustomerId] = useState("");
 
-  useEffect(() => {
-    const apiUrl = "http://127.0.0.1:5000/ticket?employee=1988"; // Replace with your API URL
+  // useEffect(() => {
+  const apiUrl = "http://127.0.0.1:5000/ticket?employee=1989"; // Replace with your API URL
 
-    fetch(apiUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        setEmployeeTickets(data["data"]);
-        // console.log(data["data"]);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
+  fetch(apiUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      setEmployeeTickets(data["data"]);
+      console.log(data["data"]);
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+  // }, []);
 
   const getCustomerDetails = (ticket_id) => {
     const apiUrl = "http://127.0.0.1:5000/ticket?ticket=" + ticket_id; // Replace with your API URL
@@ -68,8 +68,8 @@ export default function EmployeeDash() {
     fetch(apiUrl)
       .then((response) => response.json())
       .then((data) => {
-        // setEmployeeTickets(data["data"]);
-        console.log(data);
+        setEmployeeTickets(data["data"]);
+        console.log(data["data"]);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -78,10 +78,10 @@ export default function EmployeeDash() {
   // console.log(employeeTickets);
   return (
     <div className="main">
-      <h1 className="text-5xl ml-8 mt-5 font-bold">{greeting}</h1>
+      <h1 className="text-5xl ml-8 mt-5 font-bold">{greeting} Akshata!</h1>
       <div>
         <div className="Ticketpage">
-          <h1 className="text-2xl ml-8 mt-5 font-bold">Live Ticket</h1>
+          <h1 className="text-2xl ml-8 mt-5 font-bold">Live Tickets</h1>
           <div className="container">
             <ul className="cards">
               <div className="ticketsrow flex flex-row ml-8 mt-2 space-x-4">
@@ -91,20 +91,20 @@ export default function EmployeeDash() {
                     <li className="card" key={index}>
                       <div
                         key={ticket.customer_id}
-                        className="tickets bg-gray-200 w-72 rounded-lg p-4"
+                        className="tickets bg-[#EEEEEE] w-[350px] rounded-lg p-7"
                         onClick={() => openModal(ticket)}
                       >
-                        <p className="text-xl font-bold">
+                        <p className="text-xl mb-3 font-bold">
                           Ticket-#{ticket.ticket_id}
                         </p>
-                        <p className="text-lg">
-                          {truncateMessage(ticket.customer_query, 20)}
+                        <p className="text-xl mb-3">
+                          {truncateMessage(ticket.customer_query, 25)}
                         </p>
                         <p
-                          className="text-left"
+                          className="text-left mb-3 text-lg"
                           style={{ textTransform: "capitalize" }}
                         >
-                          <b>Status:</b> {ticket.status}
+                          Status: <b>{ticket.status}</b>
                         </p>
                       </div>
                     </li>
@@ -199,7 +199,7 @@ export default function EmployeeDash() {
               <li className="w-24">
                 <a
                   href="#barChartSection"
-                  className="inline-block w-full h-10 p-2 bg-white hover:text-gray-700 hover:bg-gray-200 focus:bg-[#086CC4] focus:text-white focus:outline-none dark:hover:text-white dark:bg-gray-200 dark:hover:bg-[#086CC4]"
+                  className="inline-block w-full h-10 p-2 bg-white hover:text-gray-700 hover:bg-[#086CC4] focus:bg-[#086CC4] focus:outline-none dark:hover:text-white dark:bg-gray-200 dark:hover:bg-[#086CC4]"
                   onClick={() => handleIntervalChange("weekly")}
                 >
                   Weekly
@@ -208,7 +208,7 @@ export default function EmployeeDash() {
               <li className="w-24">
                 <a
                   href="#barChartSection"
-                  className="inline-block w-full h-10 p-2 bg-white hover:text-gray-600 hover:bg-gray-200 focus:bg-[#086CC4] focus:text-white focus:outline-none dark:hover:text-white dark:bg-gray-200 dark:hover-bg-[#086CC4]"
+                  className="inline-block w-full h-10 p-2 bg-white hover:bg-[#086CC4]  focus:outline-none focus:bg-[#086CC4] dark:hover:text-white dark:bg-gray-200 dark:hover-bg-[#086CC4]"
                   onClick={() => handleIntervalChange("monthly")}
                 >
                   Monthly
@@ -217,7 +217,7 @@ export default function EmployeeDash() {
               <li className="w-24">
                 <a
                   href="#barChartSection"
-                  className="inline-block w-full h-10 p-2  bg-white hover:text-gray-600 hover:bg-gray-50  focus:outline-none focus:bg-[#086CC4] focus:text-white dark:hover:text-white dark:bg-gray-200 dark:hover-bg-[#086CC4]"
+                  className="inline-block w-full h-10 p-2  bg-white hover:bg-[#086CC4]  focus:outline-none focus:bg-[#086CC4] focus:text-white dark:hover:text-white dark:bg-gray-200 dark:hover-bg-[#086CC4]"
                   onClick={() => handleIntervalChange("yearly")}
                 >
                   Yearly
@@ -226,7 +226,7 @@ export default function EmployeeDash() {
               <li className="w-24">
                 <a
                   href="#barChartSection"
-                  className="inline-block w-full h-10 p-2 rounded-r-lg bg-white hover:text-gray-600 hover:bg-gray-50  focus:outline-none focus:bg-[#086CC4] focus:text-white dark:hover:text-white dark:bg-gray-200 dark:hover-bg-[#086CC4]"
+                  className="inline-block w-full h-10 p-2 rounded-r-lg bg-white hover:text-gray-600 hover:bg-[#086CC4]  focus:outline-none focus:bg-[#086CC4] focus:text-white dark:hover:text-white dark:bg-gray-200 dark:hover-bg-[#086CC4]"
                   onClick={() => handleIntervalChange("all")}
                 >
                   All
