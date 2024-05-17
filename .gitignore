@@ -6,10 +6,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-customer frontend/node_modules
-customer frontend/.pnp
-customer frontend/.pnp.js
-customer frontend/package-lock.json
+customer_frontend/node_modules
+customer_frontend/.pnp
+customer_frontend/.pnp.js
+customer_frontend/package-lock.json
 
 # testing
 frontend/coverage

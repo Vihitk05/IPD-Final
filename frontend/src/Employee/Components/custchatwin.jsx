@@ -191,11 +191,14 @@ export default function CustChatWindow() {
               >
                 <div id="element1" className="w-[3%] flex ml-2">
                   <button>
-                    <BsFillEmojiLaughingFill size={25} />
+                    <BsFillEmojiLaughingFill
+                      size={25}
+                      style={{ color: "black" }}
+                    />
                   </button>
                 </div>
                 <div id="element2" className="w-[3%] flex">
-                  <AiOutlinePlus size={25} />
+                  <AiOutlinePlus size={25} style={{ color: "black" }} />
                 </div>
                 <div id="element3" className="w-[88%]">
                   <input
@@ -210,7 +213,7 @@ export default function CustChatWindow() {
                 </div>
                 <div id="element4" className="w-[3%] flex">
                   <button type="submit">
-                    <IoSendSharp size={25} />
+                    <IoSendSharp size={25} style={{ color: "black" }} />
                   </button>
                 </div>
               </div>

@@ -23,7 +23,8 @@ export default function EmpChatWindow() {
   const [orderDetails, setOrderDetails] = useState([]);
   const [orderTotal, setOrderTotal] = useState("");
   const [updateButton, setUpdateButton] = useState(false);
-  const [selectedUpdateStatus, setSelectedUpdateStatus] = useState(ticketStatus);
+  const [selectedUpdateStatus, setSelectedUpdateStatus] =
+    useState(ticketStatus);
   const [customedetails, setCustomerDetails] = useState([]);
   const { tid, cid } = useParams();
   let colors = {
@@ -212,11 +213,11 @@ export default function EmpChatWindow() {
               >
                 <div id="element1" className="w-[3%] flex ml-2">
                   <button>
-                    <BsFillEmojiLaughingFill size={25} />
+                    <BsFillEmojiLaughingFill size={25} style={{ color: "black" }}/>
                   </button>
                 </div>
                 <div id="element2" className="w-[3%] flex">
-                  <AiOutlinePlus size={25} />
+                  <AiOutlinePlus size={25} style={{ color: "black" }}/>
                 </div>
                 <div id="element3" className="w-[88%]">
                   <input
@@ -231,7 +232,7 @@ export default function EmpChatWindow() {
                 </div>
                 <div id="element4" className="w-[3%] flex">
                   <button type="submit">
-                    <IoSendSharp size={25} />
+                    <IoSendSharp size={25} style={{ color: "black" }} />
                   </button>
                 </div>
               </div>

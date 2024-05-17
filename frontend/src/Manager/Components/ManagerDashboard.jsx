@@ -94,7 +94,7 @@ export default function ManagerDashboard() {
                   <li className="w-20">
                     <a
                       href="#barChartSection"
-                      className="inline-block w-full rounded-l-lg h-10 p-2 bg-white hover:bg-[#086CC4] focus:bg-[#086CC4] focus:text-white focus:outline-none dark:hover:text-white dark:bg-gray-200 dark:hover:bg-[#086CC4]"
+                      className="inline-block w-full rounded-l-lg h-10 p-2 bg-white hover:bg-gray-200  focus:bg-[#086CC4] focus:text-white focus:outline-none dark:hover:text-white dark:bg-gray-200 dark:hover:bg-[#086CC4]"
                       aria-current="page"
                       onClick={() => handleIntervalChange("daily")}
                     >
@@ -104,7 +104,7 @@ export default function ManagerDashboard() {
                   <li className="w-20">
                     <a
                       href="#barChartSection"
-                      className="inline-block w-full h-10 p-2 bg-white hover:bg-[#086CC4] focus:bg-[#086CC4] focus:text-white focus:outline-none dark:hover:text-white dark:bg-gray-200 dark:hover:bg-[#086CC4]"
+                      className="inline-block w-full h-10 p-2 bg-white hover:bg-gray-200  focus:bg-[#086CC4] focus:text-white focus:outline-none dark:hover:text-white dark:bg-gray-200 dark:hover:bg-[#086CC4]"
                       onClick={() => handleIntervalChange("weekly")}
                     >
                       Weekly
@@ -113,7 +113,7 @@ export default function ManagerDashboard() {
                   <li className="w-20">
                     <a
                       href="#barChartSection"
-                      className="inline-block w-full h-10 p-2 bg-white hover:bg-[#086CC4] focus:bg-[#086CC4] focus:text-white focus:outline-none dark:hover:text-white dark:bg-gray-200 dark:hover-bg-[#086CC4]"
+                      className="inline-block w-full h-10 p-2 bg-white hover:bg-gray-200  focus:bg-[#086CC4] focus:text-white focus:outline-none dark:hover:text-white dark:bg-gray-200 dark:hover-bg-[#086CC4]"
                       onClick={() => handleIntervalChange("monthly")}
                     >
                       Monthly
@@ -122,7 +122,7 @@ export default function ManagerDashboard() {
                   <li className="w-20">
                     <a
                       href="#barChartSection"
-                      className="inline-block w-full h-10 p-2  bg-white hover:bg-[#086CC4]  focus:outline-none focus:bg-[#086CC4] focus:text-white dark:hover:text-white dark:bg-gray-200 dark:hover-bg-[#086CC4]"
+                      className="inline-block w-full h-10 p-2  bg-white hover:bg-gray-200   focus:outline-none focus:bg-[#086CC4] focus:text-white dark:hover:text-white dark:bg-gray-200 dark:hover-bg-[#086CC4]"
                       onClick={() => handleIntervalChange("yearly")}
                     >
                       Yearly
@@ -131,7 +131,7 @@ export default function ManagerDashboard() {
                   <li className="w-20">
                     <a
                       href="#barChartSection"
-                      className="inline-block w-full h-10 p-2 rounded-r-lg bg-white hover:bg-[#086CC4]  focus:outline-none focus:bg-[#086CC4] focus:text-white dark:hover:text-white dark:bg-gray-200 dark:hover-bg-[#086CC4]"
+                      className="inline-block w-full h-10 p-2 rounded-r-lg bg-white hover:bg-gray-200   focus:outline-none focus:bg-[#086CC4] focus:text-white dark:hover:text-white dark:bg-gray-200 dark:hover-bg-[#086CC4]"
                       onClick={() => handleIntervalChange("all")}
                     >
                       All
@@ -155,9 +155,9 @@ export default function ManagerDashboard() {
                 employeeTickets.map((ticket, index) => (
                   <div
                     key={index}
-                    className="card w-96 bg-gray-500 text-primary-content"
+                    className="card w-96 rounded-lg text-primary-content"
                   >
-                    <div className="card-body">
+                    <div className="card-body rounded-lg bg-[#EEEEEE]">
                       <div className="flex flex-row items-center justify-between">
                         <h2 className="card-title">
                           Ticket #{ticket.ticket_id}
